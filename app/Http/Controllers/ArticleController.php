@@ -16,6 +16,7 @@ class ArticleController extends Controller {
 		$articles = \App\Article::all();
                 dd($articles);
                 return view('articles.index', compact('articles'));
+
 	}
 
 	/**
