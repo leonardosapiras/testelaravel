@@ -14,7 +14,6 @@ class ArticleController extends Controller {
 	 */
 	public function index() {
 		$articles = \App\Article::all();
-                dd($articles);
                 return view('articles.index', compact('articles'));
 
 	}
@@ -26,7 +25,7 @@ class ArticleController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('articles.create');
 	}
 
 	/**
@@ -36,7 +35,14 @@ class ArticleController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$input = Requests\Request::all();
+		$article = new \App\Article;
+		$article->titulo = $input['article'];
+		$article->conteudo = $input['conteudo'];
+		$article->autor = $input['autor'];
+		
+		return redirect('articles');
+		
 	}
 
 	/**
@@ -47,7 +53,8 @@ class ArticleController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$articles = \App\Article::find($id);
+		return view('articles.create', compact($articles));
 	}
 
 	/**

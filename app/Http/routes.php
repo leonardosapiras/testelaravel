@@ -20,4 +20,5 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('articles', 'ArticleController@index');
+//Route::get('articles', 'ArticleController');
+Route::resource('articles', 'ArticleController');
