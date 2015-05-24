@@ -14,6 +14,6 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::submit('Cadastrar artigo', ['class'=>'btn btn-primary form-control']) !!}
-		
+		{!! Form::label('data_x', 'Data') !!}
+		{!! Form::input('date', 'data_x', date('d/m/Y'), ['class'=>'form-control']) !!}
 	</div>

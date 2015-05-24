@@ -16,6 +16,10 @@ class ArticleController extends Controller {
 	 */
 	public function index() {
 		$articles = \App\Article::all();
+		
+		//$articles = \App\Article::dataXNaoPreenchida()->get();
+		//$articles = \App\Article::dataXPreenchida()->get();
+		
                 return view('articles.index', compact('articles'));
 
 	}
@@ -58,6 +62,7 @@ class ArticleController extends Controller {
 	public function show($id)
 	{
 		$article = \App\Article::findOrFail($id);
+		
 		//return view('articles.show', compact('article'));
 		return view('articles.show')->with('article', $article);
 	}
@@ -83,12 +88,15 @@ class ArticleController extends Controller {
 	 */
 	public function update($id, Requests\ArticleRequest $request)
 	{
+		$input = Request::all();
+		
 		$article = \App\Article::findOrFail($id);
 		
-		$input = Request::all();
 		$article->titulo = $input['titulo'];
 		$article->conteudo = $input['conteudo'];
 		$article->autor = $input['autor'];
+		$article->data_x = $input['data_x'];
+		
 		$ok = $article->update();
 		
 		return redirect('articles');
