@@ -24,5 +24,9 @@ class Article extends \Illuminate\Database\Eloquent\Model {
 	}
 	
 	protected $dates = ['data_x'];
+	
+	public function user() {
+		return $this->belongsTo("App\User");
+	}
 
 }

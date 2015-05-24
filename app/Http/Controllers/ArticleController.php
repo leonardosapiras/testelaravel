@@ -20,6 +20,7 @@ class ArticleController extends Controller {
 		//$articles = \App\Article::dataXNaoPreenchida()->get();
 		//$articles = \App\Article::dataXPreenchida()->get();
 		
+		
                 return view('articles.index', compact('articles'));
 
 	}
@@ -47,6 +48,7 @@ class ArticleController extends Controller {
 		$article->titulo = $input['titulo'];
 		$article->conteudo = $input['conteudo'];
 		$article->autor = $input['autor'];
+		$article->user_id = 1;
 		$article->save();
 		
 		return redirect('articles');
@@ -96,6 +98,7 @@ class ArticleController extends Controller {
 		$article->conteudo = $input['conteudo'];
 		$article->autor = $input['autor'];
 		$article->data_x = $input['data_x'];
+		$article->user_id = 1;
 		
 		$ok = $article->update();
 		

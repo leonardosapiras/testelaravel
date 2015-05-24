@@ -14,6 +14,9 @@
     
     <div> {{$article->conteudo}} </div>
     <div> {{$article->autor}} </div>
+    @if ($article->user != null)
+	<div> {{$article->user->toArray()['name']}} </div>
+    @endif
     
     @if ($article->data_x != null)
 	<div> {{ $article->data_x->format('Y/m/d') }} </div>
