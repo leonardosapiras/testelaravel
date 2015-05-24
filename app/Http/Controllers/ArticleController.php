@@ -3,7 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+//use Request;
+use Illuminate\Support\Facades\Request;
 
 class ArticleController extends Controller {
 
@@ -33,13 +35,15 @@ class ArticleController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Requests\ArticleRequest $request)
 	{
-		$input = Requests\Request::all();
+		
+		$input = Request::all();
 		$article = new \App\Article;
-		$article->titulo = $input['article'];
+		$article->titulo = $input['titulo'];
 		$article->conteudo = $input['conteudo'];
 		$article->autor = $input['autor'];
+		$article->save();
 		
 		return redirect('articles');
 		
@@ -53,8 +57,9 @@ class ArticleController extends Controller {
 	 */
 	public function show($id)
 	{
-		$articles = \App\Article::find($id);
-		return view('articles.create', compact($articles));
+		$article = \App\Article::findOrFail($id);
+		//return view('articles.show', compact('article'));
+		return view('articles.show')->with('article', $article);
 	}
 
 	/**
@@ -65,7 +70,9 @@ class ArticleController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$article = \App\Article::findOrFail($id);
+		return view('articles.edit')->with('article', $article);
+		
 	}
 
 	/**
@@ -74,9 +81,17 @@ class ArticleController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Requests\ArticleRequest $request)
 	{
-		//
+		$article = \App\Article::findOrFail($id);
+		
+		$input = Request::all();
+		$article->titulo = $input['titulo'];
+		$article->conteudo = $input['conteudo'];
+		$article->autor = $input['autor'];
+		$ok = $article->update();
+		
+		return redirect('articles');
 	}
 
 	/**

@@ -21,4 +21,8 @@ Route::controllers([
 ]);
 
 //Route::get('articles', 'ArticleController');
+//Route::get('articles/create', 'ArticleController@create');
+//Route::post('articles', 'ArticleController@store');
+
+
 Route::resource('articles', 'ArticleController');

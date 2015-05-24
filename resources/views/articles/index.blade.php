@@ -1,5 +1,26 @@
-<html>
-    <body>
-        {{ $articles }}
-    </body>
-</html>
+<html>@extends('corpo')
+
+@section('content')
+
+<h1> Artigos </h1>
+<hr/>
+
+@foreach ($articles as $article)
+
+<article>
+    <h2>
+	<a href="{{action("ArticleController@show", [$article->id]) }}">{{$article->titulo}}</a>
+    </h2>
+    
+    <div> {{$article->conteudo}} </div>
+    <div> {{$article->autor}} </div>
+    <hr/>
+	
+</article>
+
+@endforeach
+
+
+
+
+@stop

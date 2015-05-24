@@ -2,10 +2,11 @@
 
 @section('content')
 
-<h1> Write a new article </h1>
+<h1> Update article </h1>
 <hr/>
 
-{!! Form::open(['url' => 'articles']) !!}
+{!! Form::model($article, 
+		['method' => 'PATCH', 'url' => 'articles/'.$article->id]) !!}
 
 	@include('articles._form')
 
